@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-    //return view('layouts/admin');
-});
+Route::get('/','sendemailcontroller@index')->name('sendemail');
+Route::post('sendtoemail','sendemailcontroller@sendtoemail')->name('sendtoemail');
 
 Auth::routes();
 
