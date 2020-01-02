@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'kazimurtuza11@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'laravelweb121'),
     ],
 
     /*
@@ -101,6 +101,17 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+
+// to remove stream_socket_client(): SSL://
+
+              'stream' => [ 
+                'ssl' => [ 
+                  'allow_self_signed' => true,
+                  'verify_peer' => false,
+                  'verify_peer_name' => false,
+                ],
+                ],
+      
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
