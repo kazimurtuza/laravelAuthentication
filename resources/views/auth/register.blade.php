@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+{{$data=App\order::all()}}
+
+
+@foreach(App\order::all() as $data)
+{{$data->shipping_address}}
+@endforeach
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

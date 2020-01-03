@@ -54,6 +54,8 @@
                                     </form>
                                 </div>
                             </li>
+                            
+                         
                         @endguest
                     </ul>
                 </div>
@@ -84,6 +86,52 @@
                   
 
                     You are logged in!
+
+                    <div class="container mt-4">
+                    @if(Session::has('sms'))
+                    <div class="alert alert-success">
+                     <ul>
+                      <li>{!! \Session::get('sms') !!}</li>
+                     </ul>
+                   </div>
+                   
+                    @endif
+                   
+                            <form action="{{route('customeEmail')}}" method="post">
+                            @csrf
+                            <div class="formp-group">
+                            <label for="shipping_address">Email Form</label>
+                            </div>
+
+                            <div class="formp-group">
+                            <label for="shipping_address">shipping_address</label>
+                            <input type="text" name="shipping_address" class="form-control">
+
+                            </div>
+                            <div class="formp-group">
+                            <label for="shipping_address">phone_number</label>
+                            <input type="text" name="phone_number" class="form-control">
+
+                            </div>
+                            <div class="formp-group">
+                            <label for="shipping_address">user_id</label>
+                            <input type="text" name="user_id" value="{{auth::user()->id}}" class="form-control">
+
+                            </div>
+                            <div class="formp-group">
+                            <label for="shipping_address">price</label>
+                            <input type="text" name="price" class="form-control">
+
+                            </div>
+
+                           <div class="form-group float-right mt-4" >
+                           <input type="submit" value="send Email"  class="btn btn-success">
+                           
+                           </div>
+                            
+                            </form>
+                            
+                            </div>
                 </br>
             </div>
         </div>

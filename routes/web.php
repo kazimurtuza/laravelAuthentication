@@ -19,3 +19,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
  Route::get('changepass','changepasscontroller@index')->name('changepass');
  Route::post('password_change_in_database','changepasscontroller@change')->name('change');
+ Route::post('customeEmail','OrderController@order')->name('customeEmail');
