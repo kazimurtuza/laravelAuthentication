@@ -7,22 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class orderEmail extends Notification
+class emailvarify extends Notification
 {
     use Queueable;
-
-    public $userdetail;
-    public $orderdetail;
+    public $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($userinfo,$orderdata)
+    public function __construct($user)
     {
-        $this->userdetail=$userinfo;
-        $this->orderdetail=$orderdata;
+        $this->user=$user;
     }
 
     /**
@@ -44,8 +41,7 @@ class orderEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view('email2.order',['userdata'=>$this->userdetail,'orderdata'=>$this->orderdetail]);
-                   
+        return (new MailMessage)->view('Emailvarify',['user'=>$this->user]);
     }
 
     /**

@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->boolean('gender')->default(1)->comment('0=female|1=male');
             $table->string('email')->unique();
+            $table->tinyInteger('verifyEML')->default(0);
+            $table->string('verify_token');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

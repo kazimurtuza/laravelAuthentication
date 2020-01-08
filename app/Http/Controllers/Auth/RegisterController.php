@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+
 use App\User;
+use App\Mail\verifyEmail;
+use App\Notifications\emailvarify;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+
 
 class RegisterController extends Controller
 {
@@ -67,13 +74,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $name=$data['firstname']."-".$data['lastname'];
-        return User::create([
+       $user=User::create([
             'username' => $name,
             'first_name' => $data['firstname'],
             'last_name' => $data['lastname'],
             'gender'=> $data['gender'],
             'email' => $data['email'],
+            'verify_token' => Str::random(32),
             'password' => Hash::make($data['password']),
         ]);
+        $user->notify(new emailvarify($user));
+      
+      
+      return $user;
     }
 }
